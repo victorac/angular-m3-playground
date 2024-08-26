@@ -1,20 +1,125 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
-@use './m3-theme.scss';
+@use "./m3-theme.scss";
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav {
+  // Override the colors to create a dark sidenav.
+  width: fit-content !important;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin my-comp-theme($theme) {
+  .surface {
+    background: mat.get-theme-color($theme, surface);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .surface-container {
+    background: mat.get-theme-color($theme, surface-container);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .surface-container-lowest {
+    background: mat.get-theme-color($theme, surface-container-lowest);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .surface-container-low {
+    background: mat.get-theme-color($theme, surface-container-low);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .surface-container-high {
+    background: mat.get-theme-color($theme, surface-container-high);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .surface-container-highest {
+    background: mat.get-theme-color($theme, surface-container-highest);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .on-surface-variant {
+    color: mat.get-theme-color($theme, on-surface-variant);
+  }
+
+  .outline {
+    border-color: mat.get-theme-color($theme, outline);
+  }
+
+  .outline-variant {
+    border-color: mat.get-theme-color($theme, outline-variant);
+  }
+
+  .outline-fill {
+    fill: mat.get-theme-color($theme, outline);
+  }
+
+  .outline-variant-fill {
+    fill: mat.get-theme-color($theme, outline-variant);
+  }
+
+  .success {
+    fill: #39693b;
+  }
+
+  .error {
+    fill: mat.get-theme-color($theme, error);
+  }
+
+  .sidenav {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: mat.get-theme-color($theme, surface-container);
+    // height: 100vh;
+  }
+
+  .callout-impact {
+    background-color: mat.get-theme-color($theme, primary-container);
+    border-left: 4 solid mat.get-theme-color($theme, primary);
+    color: mat.get-theme-color($theme, on-surface);
+    fill: mat.get-theme-color($theme, primary);
+  }
+
+  .callout-info {
+    background-color: mat.get-theme-color($theme, primary-container);
+    border-left: 4 solid mat.get-theme-color($theme, primary);
+    color: mat.get-theme-color($theme, on-surface);
+    fill: mat.get-theme-color($theme, on-surface);
+  }
+}
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 :root {
-  @include mat.all-component-themes(m3-theme.$light-theme)
+  @include mat.all-component-themes(m3-theme.$light-theme);
+  @include my-comp-theme(m3-theme.$light-theme);
+}
+
+.dark-theme {
+  @include mat.all-component-colors(m3-theme.$dark-theme);
+  @include my-comp-theme(m3-theme.$dark-theme);
 }
 
 // Comment out the line below if you want to use the pre-defined typography utility classes.
@@ -25,5 +130,11 @@
 // @include mat.color-variants-backwards-compatibility($bluewalnut2-theme);
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

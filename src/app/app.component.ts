@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { ThemeService } from './theme.service';
+import { HeaderComponent } from './header/header.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { CardComponent } from "./card/card.component";
 
 @Component({
   selector: 'app-root',
@@ -33,16 +37,31 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-  ],
+    HeaderComponent,
+    SidenavComponent,
+    CardComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor() {
+  @ViewChild(SidenavComponent) sidenav: SidenavComponent | undefined;
+
+  constructor(private themeService: ThemeService) {
     const currentYear = this.currentDate.getFullYear();
     const currentMonth = this.currentDate.getMonth();
     this.startDate = new FormControl(new Date(currentYear, currentMonth, 1));
     this.endDate = new FormControl(this.currentDate);
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
+
+  toggleSidenav() {
+    if (this.sidenav) {
+      this.sidenav.toggle();
+    }
   }
 
   currentDate = new Date();

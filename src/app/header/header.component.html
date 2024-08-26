@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="toggleSidenav()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>BlueWalnut</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="toggleTheme()" aria-label="toggle theme">
+    @if(currentTheme() === "light-theme"){
+        <mat-icon>dark_mode</mat-icon>
+    } @else {
+        <mat-icon>light_mode</mat-icon>
+    }
+  </button>
+</mat-toolbar>

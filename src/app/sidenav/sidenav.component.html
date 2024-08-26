@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav" autosize>
+  <mat-sidenav
+    mode="side"
+    opened
+    disableClose
+    fixedInViewport
+    fixedTopGap="64"
+    fixedBottomGap="0"
+    (mouseenter)="enter()"
+    (mouseleave)="leave()"
+  >
+    <mat-nav-list>
+      <mat-list-item>
+        @if(expandend){
+        <div style="display: flex; align-items: center; gap: 10px">
+          <mat-icon>speed</mat-icon>
+          <h4>Overview</h4>
+        </div>
+        } @else {
+        <div style="display: flex; align-items: center; gap: 10px">
+          <mat-icon>speed</mat-icon>
+        </div>
+        }
+      </mat-list-item>
+      <mat-list-item>
+        @if(expandend){
+        <div style="display: flex; align-items: center; gap: 10px">
+          <mat-icon>query_stats</mat-icon>
+          <h4>KPIs</h4>
+        </div>
+        } @else {
+        <div style="display: flex; align-items: center; gap: 10px">
+          <mat-icon matListIcon>query_stats</mat-icon>
+        </div>
+        }
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
